@@ -14,7 +14,7 @@
 
       <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Usuario" name="ingUsuario" required>
+          <input type="text" class="form-control" placeholder="Usuario" name="loginUsuario" id="loginUsuario" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Contraseña" name="ingPassword" required>
+          <input type="password" class="form-control" placeholder="Contraseña" name="passUsuario" id="passUsuario" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -37,6 +37,14 @@
           <!-- /.col -->
         </div>
         </div>
+
+        <?php
+        //instanciamos el controlador usuario
+        $login=new ControladorUsuario();
+
+        //convocamos al metodo ctrIngresoUsuario del controlador 
+        $login->ctrIngresoUsuario();
+        ?>
       </form>
 
     </div>
