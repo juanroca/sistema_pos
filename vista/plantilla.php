@@ -15,5 +15,11 @@
   <link rel="stylesheet" href="vista/dist/css/adminlte.css">
   <link rel="icon" href="vista/img/plantilla/logoico.png">
 </head>
+
 <?php
-include "modulos/login.php";
+if(isset($_SESSION["iniciarSesion"]) && $_SESSION["iniciarSesion"]=="ok"){
+  include "asideMenu.php";
+}else{
+  include "modulos/login.php";
+}
+?>
