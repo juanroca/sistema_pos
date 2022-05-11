@@ -18,13 +18,18 @@ class ControladorUsuario{
                 if($respuesta==null) {
                     echo "<br><p class='alert alert-danger'>Error de acceso</p>";
                 }
-                if($respuesta["login_usuario"]==$usuario && $respuesta["password"]==$password){
+                else{
+                    echo '<script>
+                    window.location="inicio"
+                    </script>';
+                }
+
+                /*if($respuesta["login"]==$usuario && $respuesta["password"]==$password){
                     $_SESSION["iniciarSesion"]=="ok";
                     echo '<script>
-                        window.location="asideMenu";
+                        window.location="asideMenu.php";
                     </script>';
-
-                }
+                }*/
 
         }
     }
