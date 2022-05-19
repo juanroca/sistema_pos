@@ -1,6 +1,17 @@
 <?php
-class ControladorUsuario{
+//CAPTURAMOS LA URL
+$ruta=parse_url($_SERVER['REQUEST_URI']);
+//echo $ruta["query"];
+//var_dump($ruta);
+ if(isset($ruta["query"])){
+     if($ruta["query"]=="ctrRegUsuario"){
+         $metodo=$ruta["query"];
+         $usuario=new ControladorUsuario();
+         $usuario->$metodo();
+     }
+ }
 
+class ControladorUsuario{
     /*=====acceso al sistema======*/
     static public function ctrIngresoUsuario(){
         if(isset($_POST["loginUsuario"])){
@@ -33,5 +44,20 @@ class ControladorUsuario{
 
         }
     }
+
+    /*=====INFORMACION DE USUARIOS======*/
+    static public function ctrInfoUsuarios(){
+        $respuesta= ModeloUsaurio::mdlInfoUsuarios();
+        return $respuesta;
+    }
+
+    /*=====REGISTRO DE NUEVO USUARIOS======*/
+    static public function ctrRegUsuario(){
+        echo ($_POST["login"]);
+        
+        //ModeloUsuario::mdlRegUsuarios();
+    }
+
+
 
 }

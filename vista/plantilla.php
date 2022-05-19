@@ -14,11 +14,14 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="assest/dist/css/adminlte.css">
   <link rel="icon" href="assest/img/plantilla/logoico.png">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="assest/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="assest/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="assest/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 </head>
 
 <?php
-
-if($_GET["ruta"]=="inicio"){  
+if($_GET["ruta"]=="inicio" || $_GET["ruta"]=="usuario"){  
   include "vista/asideMenu.php";
   include "vista/".$_GET["ruta"].".php";  
   include "vista/footer.php";

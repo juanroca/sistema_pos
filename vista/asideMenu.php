@@ -49,8 +49,8 @@
                with font-awesome or any other icon font library -->
             <!-- USUARIOS -->
             <li class="nav-item">
-              <a href="" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-user-md"></i>
                 <p>
                   Usuario
                   <i class="right fas fa-angle-left"></i>
@@ -65,12 +65,12 @@
                 </li>
               </ul>
             </li>
-            <!-- CLIENTES -->
+            <!-- PACIENTES -->
             <li class="nav-item">
               <a href="" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-users"></i>
                 <p>
-                  Clientes
+                  Pacientes
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
@@ -78,7 +78,7 @@
                 <li class="nav-item">
                   <a href="" class="nav-link">
                     <i class="far fa-circle nav-icon"> </i>
-                    <p>Lista de clientes</p>
+                    <p>Lista de pacientes</p>
                   </a>
                 </li>
               </ul>
@@ -86,9 +86,9 @@
             <!-- PRODUCTOS -->
             <li class="nav-item">
               <a href="" class="nav-link">
-                <i class="nav-icon fas fa-user"></i>
+                <i class="nav-icon fas fa-book-medical"></i>
                 <p>
-                  Productos
+                  Consultas
                   <i class="right fas fa-angle-left"></i>
                 </p>
               </a>
@@ -96,7 +96,7 @@
                 <li class="nav-item">
                   <a href="" class="nav-link">
                     <i class="far fa-circle nav-icon"> </i>
-                    <p>Lista de productos</p>
+                    <p>Lista de consultas</p>
                   </a>
                 </li>
               </ul>
