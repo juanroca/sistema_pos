@@ -11,8 +11,8 @@ $fechaActual = date('m-d-Y h:i:s');
     <div class="card-body">
       <div class="row">
         <div class="form-group col-sm-2">
-          <label>Rol Usuario</label>
-          <select class="form-control form-control-sm" name="rol" id="rol" placeholder="SELECCIONE EL ROL">
+          <label>Perfil</label>
+          <select class="form-control form-control-sm" name="perfil" id="perfil" placeholder="SELECCIONE EL ROL">
             <option value="ADMIN">ADMIN</option>
             <option value="MODERADOR">MODERADOR</option>
           </select>
@@ -29,23 +29,7 @@ $fechaActual = date('m-d-Y h:i:s');
           <label>Apellido Materno</label>
           <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="apMaterno" name="apMaterno" placeholder="Apellido materno">
         </div>
-      </div>
-
-      <div class="row">
-        <div class="form-group col-sm-4">
-          <label>Login</label>
-          <input type="text" class="form-control form-control-sm" id="login" name="login" placeholder="">
-        </div>
-        <div class="form-group col-sm-4">
-          <label>Contraseña</label>
-          <input type="password" class="form-control form-control-sm" id="password1" name="password1" placeholder="">
-        </div>
-        <div class="form-group col-sm-4">
-          <label>Repita la contraseña</label>
-          <input type="password" class="form-control form-control-sm" id="password2" name="password2" placeholder="">
-        </div>
-      </div>
-      <p class="text-danger" id="error-pass"></p>
+      </div>      
       <div class="row">
         <div class="form-group col-sm-3">
           <label>C.I.</label>
@@ -60,7 +44,25 @@ $fechaActual = date('m-d-Y h:i:s');
           <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="sucursal" name="sucursal" placeholder="">
         </div>
       </div>
+      <div class="row">
+        <div class="form-group col-sm-4">
+          <label>Login</label>
+          <input type="text" class="form-control form-control-sm" id="login" name="login" autocomplete="off">
+        </div>
+        <div class="form-group col-sm-4">
+          <label>Contraseña</label>
+          <input type="password" class="form-control form-control-sm" id="password1" name="password1" autocomplete="off">
+        </div>
+        <div class="form-group col-sm-4">
+          <label>Repita la contraseña</label>
+          <input type="password" class="form-control form-control-sm" id="password2" name="password2" autocomplete="off">
+        </div>
+      </div>
+      <p class="text-danger" id="error-pass"></p>
       <!-- /.card-body -->
+      <div class="row">
+        <input type="file" name="fotoUsu" id="fotoUsu">
+      </div>
 
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-primary" onclick="RegNuevoUsuario()">Guardar</button>

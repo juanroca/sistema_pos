@@ -53,9 +53,46 @@ class ControladorUsuario{
 
     /*=====REGISTRO DE NUEVO USUARIOS======*/
     static public function ctrRegUsuario(){
-        echo ($_POST["login"]);
+        require_once "../modelo/usuarioModelo.php";
+        $fechaActual=date('Y-m-d');
+        $horaActual=date('h:i:s');
         
-        //ModeloUsuario::mdlRegUsuarios();
+        $nombres=strtoupper(trim($_POST['nombres']));
+        $apPaterno=strtoupper(trim($_POST['apPaterno']));
+        $apMaterno=strtoupper(trim($_POST['apMaterno']));
+        $ci=trim($_POST['ci']);
+        $perfil=strtoupper(trim($_POST['perfil']));
+        //$estado=strtoupper(trim($_POST['estado']));
+        $loginUsuario=trim($_POST['login']);
+        $password=password_hash(trim($_POST['password1']),PASSWORD_DEFAULT);
+        $telf=trim($_POST['telefono']);
+        $sucursal=strtoupper(trim($_POST['sucursal']));
+
+        $fotoUsu=$_FILES['fotoUsu'];
+        $nomFoto = $fotoUsu['name'];   //captura el nombre del archivo de la imagen en la variable $imagen 
+        $rutaFoto = $fotoUsu['tmp_name']; 
+        $rutaSave = '../assest/img/usuario/';              
+        move_uploaded_file($rutaFoto,$rutaSave.$nomFoto); //Subir el nombre de la imagen al sistema
+
+        $data=array(
+            'perfil'=>$perfil,
+            'estado'=>'ACTIVO',                                   
+            'nombres'=>$nombres,
+            'paterno'=>$apPaterno,
+            'materno'=>$apMaterno,
+            'nom_completo'=>$nombres.' '.$apPaterno.' '.$apMaterno,
+            'ci'=>$ci,
+            'telefono'=>$telf,
+            'sucursal'=>$sucursal,
+            'login_usu'=>$loginUsuario,
+            'pass_usu'=>$password, 
+            'foto' =>$nomFoto,
+            //'usu_crea'=>session('login'),
+            //'edit_usu'=>$editor,
+            //'fecha_edit_usu'=>$fechaActual,
+        );
+        //var_dump($data);
+        ModeloUsaurio::mdlRegUsuarios($data);
     }
 
 

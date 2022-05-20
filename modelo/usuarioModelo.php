@@ -1,4 +1,5 @@
 <?php
+require_once "conexion.php";
 class ModeloUsaurio
 {
     /*=====MOSTRAR USUARIO======*/
@@ -27,7 +28,33 @@ class ModeloUsaurio
         $stmt->null;
     }
     /*=====REGISTRAR NUEVO USUARIO======*/
-    static public function mdlRegUsuarios()
-    {
+    static public function mdlRegUsuarios($data){
+        $nombre=$data['nombres'];
+        $paterno=$data['paterno'];
+        $materno=$data['materno'];
+        $completo=$data['nom_completo'];
+        $ci=$data['ci'];
+        $telefono=$data['telefono'];
+        $perfil=$data['perfil'];
+        $estado=$data['estado'];
+        $sucursal=$data['sucursal'];
+        $login_usu=$data['login_usu'];
+        $pass_usu=$data['pass_usu'];
+        $foto=$data['foto'];               
+
+        $stmt = Conexion::conectar()->prepare("inser into usuario(nombres, paterno, materno, nom_completo, ci, telefono, perfil, estado, sucursal, login_usu, pass_usu, foto) VALUES (
+            '$nombre', 
+            '$paterno', 
+            '$materno', 
+            '$completo', 
+            '$ci', 
+            '$telefono', 
+            '$perfil', 
+            '$estado', 
+            '$sucursal', 
+            '$login_usu', 
+            '$pass_usu', 
+            '$foto')");
+        $stmt->execute();   
     }
 }

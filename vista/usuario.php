@@ -41,7 +41,7 @@
               <tr>
                 <td><?php echo $value['id_usuario']; ?> </td>
                 <td><?php echo $value['nom_completo']; ?> </td>
-                <td><?php echo $value['login']; ?> </td>
+                <td><?php echo $value['login_usu']; ?> </td>
                 <td><?php echo $value['perfil']; ?> </td>
                 <?php
                 if ($value['foto'] == '') {
