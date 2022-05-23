@@ -23,19 +23,24 @@ class ControladorUsuario{
 
             /*enviar datos al modelo */
             $respuesta=ModeloUsaurio::mdlMostrarUsuario($usuario);
-                //echo $respuesta;
+                echo $respuesta;
                 //var_dump($respuesta);
 
-                if($respuesta==null) {
+                if($respuesta==null||password_verify($password,$respuesta["pass_usu"])==false) {
                     echo "<br><p class='alert alert-danger'>Error de acceso</p>";
                 }
                 else{
+                    $_SESSION["ingreso"]="ok";
+                    $_SESSION["id_usuario"]=$respuesta["id_usuario"];
+                    $_SESSION["nom_completo"]=$respuesta["nom_completo"];
+                    $_SESSION["perfil"]=$respuesta["perfil"];
+                    $_SESSION["foto"]=$respuesta["foto"];
                     echo '<script>
                     window.location="inicio"
                     </script>';
                 }
 
-                /*if($respuesta["login"]==$usuario && $respuesta["password"]==$password){
+                /*if($respuesta["login_usu"]==$usuario && $respuesta["pass_usu"]==$password){
                     $_SESSION["iniciarSesion"]=="ok";
                     echo '<script>
                         window.location="asideMenu.php";
@@ -64,7 +69,7 @@ class ControladorUsuario{
         $perfil=strtoupper(trim($_POST['perfil']));
         //$estado=strtoupper(trim($_POST['estado']));
         $loginUsuario=trim($_POST['login']);
-        $password=password_hash(trim($_POST['password1']),PASSWORD_DEFAULT);
+        $password=password_hash(trim($_POST['pass1']),PASSWORD_DEFAULT);
         $telf=trim($_POST['telefono']);
         $sucursal=strtoupper(trim($_POST['sucursal']));
 
@@ -92,7 +97,8 @@ class ControladorUsuario{
             //'fecha_edit_usu'=>$fechaActual,
         );
         //var_dump($data);
-        ModeloUsaurio::mdlRegUsuarios($data);
+        $respuesta=ModeloUsaurio::mdlRegUsuario($data);
+        echo $respuesta;
     }
 
 

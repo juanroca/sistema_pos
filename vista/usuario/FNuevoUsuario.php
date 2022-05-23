@@ -19,29 +19,29 @@ $fechaActual = date('m-d-Y h:i:s');
         </div>
         <div class="form-group col-sm-4">
           <label>Nombres</label>
-          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="nombres" name="nombres" placeholder="Nombres">
+          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="nombres" name="nombres" placeholder="NOMBRES">
         </div>
         <div class="form-group col-sm-3">
           <label>Apellido Paterno</label>
-          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="apPaterno" name="apPaterno" placeholder="Apellido paterno">
+          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="apPaterno" name="apPaterno" placeholder="APELLIDO PATERNO">
         </div>
         <div class="form-group col-sm-3">
           <label>Apellido Materno</label>
-          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="apMaterno" name="apMaterno" placeholder="Apellido materno">
+          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="apMaterno" name="apMaterno" placeholder="APELLIDO MATERNO">
         </div>
       </div>      
       <div class="row">
         <div class="form-group col-sm-3">
           <label>C.I.</label>
-          <input type="text" class="form-control form-control-sm" id="ci" name="ci" placeholder="">
+          <input type="text" class="form-control form-control-sm" id="ci" name="ci" placeholder="CÉDULA DE IDENTIDAD">
         </div>
         <div class="form-group col-sm-3">
           <label>Teléfono</label>
-          <input type="text" class="form-control form-control-sm" id="telefono" name="telefono" placeholder="Número de Teléfono">
+          <input type="text" class="form-control form-control-sm" id="telefono" name="telefono" placeholder="TELEFONO">
         </div>
         <div class="form-group col-sm-6">
           <label>Sucursal</label>
-          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="sucursal" name="sucursal" placeholder="">
+          <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="sucursal" name="sucursal" placeholder="SUCURSAL">
         </div>
       </div>
       <div class="row">
@@ -51,11 +51,11 @@ $fechaActual = date('m-d-Y h:i:s');
         </div>
         <div class="form-group col-sm-4">
           <label>Contraseña</label>
-          <input type="password" class="form-control form-control-sm" id="password1" name="password1" autocomplete="off">
+          <input type="password" class="form-control form-control-sm" id="pass1" name="pass1" autocomplete="off">
         </div>
         <div class="form-group col-sm-4">
           <label>Repita la contraseña</label>
-          <input type="password" class="form-control form-control-sm" id="password2" name="password2" autocomplete="off">
+          <input type="password" class="form-control form-control-sm" id="pass2" name="pass2" autocomplete="off">
         </div>
       </div>
       <p class="text-danger" id="error-pass"></p>
