@@ -14,7 +14,7 @@ $ruta=parse_url($_SERVER['REQUEST_URI']);
 class ControladorUsuario{
     /*=====acceso al sistema======*/
     static public function ctrIngresoUsuario(){
-        if(isset($_POST["loginUsuario"])){
+        if(isset($_POST["loginUsuario"])&&isset($_POST["passUsuario"])){
             //echo "Se esta ingresando: ".$_POST["loginUsuario"];
 
             /*Recepcionar los datos del formulario*/
@@ -23,30 +23,22 @@ class ControladorUsuario{
 
             /*enviar datos al modelo */
             $respuesta=ModeloUsaurio::mdlMostrarUsuario($usuario);
-                echo $respuesta;
-                //var_dump($respuesta);
+                //echo $respuesta;
+                var_dump($respuesta);
 
-                if($respuesta==null||password_verify($password,$respuesta["pass_usu"])==false) {
+                if($respuesta==null || password_verify($password,$respuesta["pass_usu"])==false) {
                     echo "<br><p class='alert alert-danger'>Error de acceso</p>";
                 }
                 else{
                     $_SESSION["ingreso"]="ok";
-                    $_SESSION["id_usuario"]=$respuesta["id_usuario"];
-                    $_SESSION["nom_completo"]=$respuesta["nom_completo"];
-                    $_SESSION["perfil"]=$respuesta["perfil"];
-                    $_SESSION["foto"]=$respuesta["foto"];
+                    $_SESSION["id_usu"]=$respuesta["id_usuario"];
+                    $_SESSION["completo_usu"]=$respuesta["nom_completo"];
+                    $_SESSION["perfil_usu"]=$respuesta["perfil"];
+                    $_SESSION["foto_usu"]=$respuesta["foto"];
                     echo '<script>
-                    window.location="inicio"
+                    window.location="inicio";
                     </script>';
                 }
-
-                /*if($respuesta["login_usu"]==$usuario && $respuesta["pass_usu"]==$password){
-                    $_SESSION["iniciarSesion"]=="ok";
-                    echo '<script>
-                        window.location="asideMenu.php";
-                    </script>';
-                }*/
-
         }
     }
 

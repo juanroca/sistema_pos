@@ -32,7 +32,7 @@ if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
   if (isset($_GET["ruta"])) {
     if (
       $_GET["ruta"] == "inicio" ||
-      $_GET["ruta"] == "usuario"||
+      $_GET["ruta"] == "usuario" ||
       $_GET["ruta"] == "salir"
     ) {
       include "vista/asideMenu.php";
