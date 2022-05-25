@@ -1,56 +1,73 @@
+<?php
+require_once "../../controlador/usuario_controlador.php";
+require_once "../../modelo/usuarioModelo.php";
+
+$idUsuario = $_GET["idUsuario"];
+
+$usuario = ControladorUsuario::ctrDetalleUsuarios($idUsuario);
+
+?>
+
 <!-- Datos del usuario para ver en el modal -->
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <td><?php echo $usuario['id_usuario'];?></td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th>Fecha de Registro</th>
-            <td><?php echo $usuario['fecha_usu'];?></td>
-        </tr>
-        <tr>
-            <th>Login</th>
-            <td><?php echo $usuario['login_usu'];?></td>
-        </tr>
-        <tr>
-            <th>Rol del Usuario</th>
-            <td><?php echo $usuario['rol_usu'];?></td>
-        </tr>     
-        <tr>
-            <th>Grado</th>
-            <td><?php echo $usuario['grado_usu'];?></td>
-        </tr>
-        <tr>
-            <th>Nombres</th>
-            <td><?php echo $usuario['nombres_usu'];?></td>
-        </tr>
-        <tr>
-            <th>Ap. Paterno</th>
-            <td><?php echo $usuario['paterno_usu'];?></td>
-        </tr>
-        <tr>
-            <th>Ap. Materno</th>
-            <td><?php echo $usuario['materno_usu'];?></td>
-        </tr>
-        <tr>
-            <th>C.I.</th>
-            <td><?php echo $usuario['ci_usu'];?></td>
-        </tr>
-        <tr>
-            <th>Telefono</th>
-            <td><?php echo $usuario['telefono_usu'];?></td>
-        </tr>
-        <tr>
-            <th>Unidad</th>
-            <td><?php echo $usuario['unidad_usu'];?></td>
-        </tr>
-
-    </tbody>
-
-</table>
-<div class="modal-footer justify-content-between">
-       <button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+<div class="modal-header">
+    <h4 class="modal-title">DETALLE DEL USUARIO</h4>
+</div>
+<div class="modal-body">
+    <!-- Aqui va el contenido -->
+    <div class="row">
+        <div class="col-6">
+            <table class="">
+                <tr>
+                    <th>Id Usuario</th>
+                    <td><?php echo $usuario['id_usuario'] ?></td>
+                </tr>
+                <tr>
+                    <th>Login</th>
+                    <td><?php echo $usuario['login_usu'] ?></td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td><?php echo $usuario['nom_completo'] ?></td>
+                </tr>
+                <tr>
+                    <th>CI</th>
+                    <td><?php echo $usuario['ci'] ?></td>
+                </tr>
+                <tr>
+                    <th>Telefono</th>
+                    <td><?php echo $usuario['telf'] ?></td>
+                </tr>
+                <tr>
+                    <th>Sucursal</th>
+                    <td><?php echo $usuario['sucursal'] ?></td>
+                </tr>
+                <tr>
+                    <th>Perfil</th>
+                    <td><?php echo $usuario['perfil'] ?></td>
+                </tr>
+                <tr>
+                    <th>Estado</th>
+                    <td>
+                        <?php
+                        if ($usuario['estado'] == "1") {
+                            echo "<small class='badge badge-success'>Habilitado</small>";
+                        } else {
+                            echo "<small class='badge badge-danger'>Deshabilitado</small>";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Fecha de registro</th>
+                    <td><?php echo $usuario['fecha_usu'] ?></td>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <img src="assest/img/usuario/<?php echo $usuario['foto']; ?>" alt="" width="300px">
+        </div>
     </div>
+</div>
+<div class="modal-footer justify-content-between">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+</div>

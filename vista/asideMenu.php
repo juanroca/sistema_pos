@@ -112,7 +112,7 @@
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="ventas" class="nav-link">
                     <i class="far fa-circle nav-icon"> </i>
                     <p>Lista de ventas</p>
                   </a>
@@ -121,7 +121,7 @@
             </li>
             <li class="nav-item">
               <a href="salir" class="nav-link">
-                <i class="nav-icon fas fa-door_open"></i>
+                <i class="fas fa-door-open"></i>
                 <p>
                   Salir
                 </p>

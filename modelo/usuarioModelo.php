@@ -2,22 +2,18 @@
 require_once "conexion.php";
 class ModeloUsaurio
 {
-    /*=====MOSTRAR USUARIO======*/
-    static public function mdlMostrarUsuario($usuario)
+    /*=====ACCESO DE USUARIO AL SISTEMA======*/
+    static public function mdlMostrarUsuario($valor)
     {
-        //echo "Llego el usuario: ".$valor. " al modelo";
-
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE login_usu=$usuario");
-        $stmt->execute();
-        return $stmt->fetch();
-        //cerramos la conexion
-        $stmt->close;
-        //vaciamos cache
-        $stmt->null;
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE login_usu='$valor'");
+        $stmt->execute();  //ejecutamos la consulta
+        return $stmt->fetch(); //retornar el valor recuperado con la consulta
+        $stmt->close;  //cerramos la conexion
+        $stmt->null; //vaciamos cache       
     }
 
-    /*=====MOSTRAR USUARIOS======*/
-    static public function mdlInfoUsuarios()
+    /*=====LISTA USUARIOS======*/
+    static public function mdlListaUsuarios()
     {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario");
         $stmt->execute();
@@ -64,4 +60,14 @@ class ModeloUsaurio
         $stmt->close;
         $stmt->null;
     }
+
+    /*=====DETALLE USUARIO======*/
+    static public function mdlDetalleUsuario($idUsuario)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE id_usuario='$idUsuario'");
+        $stmt->execute();
+        return $stmt->fetch();
+        $stmt->close;  //cerramos la conexion
+        $stmt->null; //vaciamos cache       
+    }    
 }

@@ -38,6 +38,8 @@ if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
       include "vista/asideMenu.php";
       include "vista/" . $_GET["ruta"] . ".php";
       include "vista/footer.php";
+    } else {
+      include "404.php";
     }
   } else {
     include "404.php";

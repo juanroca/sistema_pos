@@ -33,37 +33,37 @@
           </thead>
           <tbody>
             <?php
-            $usuario = ControladorUsuario::ctrInfoUsuarios();
+            $listaUsuario = ControladorUsuario::ctrListaUsuarios();
             //var_dump($usuario);
 
-            foreach ($usuario as $value) {
+            foreach ($listaUsuario as $usuario) {
             ?>
               <tr>
-                <td><?php echo $value['id_usuario']; ?> </td>
-                <td><?php echo $value['nom_completo']; ?> </td>
-                <td><?php echo $value['login_usu']; ?> </td>
-                <td><?php echo $value['perfil']; ?> </td>
+                <td><?php echo $usuario['id_usuario']; ?> </td>
+                <td><?php echo $usuario['nom_completo']; ?> </td>
+                <td><?php echo $usuario['login_usu']; ?> </td>
+                <td><?php echo $usuario['perfil']; ?> </td>
                 <?php
-                if ($value['foto'] == '') {
+                if ($usuario['foto'] == '') {
                 ?>
                   <td><img src="assest/img/usuario/user.png" alt="" width="50px"></td>
                 <?php
                 } else {
                 ?>
-                  <td><img src="assest/img/usuario/<?php echo $value['foto']; ?>" alt="" width="50px"></td>
+                  <td><img src="assest/img/usuario/<?php echo $usuario['foto']; ?>" alt="" width="50px"></td>
                 <?php
                 }
                 ?>
-                <td><?php echo $value['ultimo_login']; ?> </td>
+                <td><?php echo $usuario['ultimo_login']; ?> </td>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-info">
+                    <button class="btn btn-info" onclick="MVerUsuario(<?php echo $usuario['id_usuario']; ?>)">
                       <i class="fas fa-eye"></i>
                     </button>
-                    <button class="btn btn-secondary">
+                    <button class="btn btn-secondary" onclick="MEditUsuario(<?php echo $usuario['id_usuario']; ?>)">
                       <i class="fas fa-edit"></i>
                     </button>
-                    <button class="btn btn-danger">
+                    <button class="btn btn-danger" onclick="MEliUsuario(<?php echo $usuario['id_usuario']; ?>)">
                       <i class="fas fa-trash"></i>
                     </button>
 

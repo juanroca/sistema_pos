@@ -13,6 +13,23 @@ function MNuevoUsuario(){
         }
     )
 }
+
+/* ***** MODAL VER USUARIO */
+function MVerUsuario(id){
+    $('#modal-lg').modal('show');
+    var obj="";
+    $.ajax(
+        {
+            type:"POST",
+            url:"vista/usuario/DetalleUsuario.php?idUsuario="+id,
+            data:obj,
+            success:function(data){
+                $("#modal-content-lg").html(data);
+            }
+        }
+    )
+}
+
 /* ***** FUNCION REGISTRO NUEVO USUARIO */
 function RegNuevoUsuario(){
     var pass1=document.getElementById("pass1").value //extraemos el dato de password

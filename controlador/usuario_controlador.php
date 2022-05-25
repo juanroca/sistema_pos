@@ -14,22 +14,21 @@ $ruta=parse_url($_SERVER['REQUEST_URI']);
 class ControladorUsuario{
     /*=====acceso al sistema======*/
     static public function ctrIngresoUsuario(){
-        if(isset($_POST["loginUsuario"])&&isset($_POST["passUsuario"])){
-            //echo "Se esta ingresando: ".$_POST["loginUsuario"];
+        if(isset($_POST["loginUsuario"]) && isset($_POST["passUsuario"])){
+            echo "Se esta ingresando: ".$_POST["passUsuario"];
 
-            /*Recepcionar los datos del formulario*/
+            /*Recepcionar los datos del formulario login.php*/
             $usuario=$_POST["loginUsuario"]; //capturamos el login
             $password=$_POST["passUsuario"]; //capturamos el password
 
             /*enviar datos al modelo */
             $respuesta=ModeloUsaurio::mdlMostrarUsuario($usuario);
-                //echo $respuesta;
-                var_dump($respuesta);
+            echo $respuesta;
 
-                if($respuesta==null || password_verify($password,$respuesta["pass_usu"])==false) {
-                    echo "<br><p class='alert alert-danger'>Error de acceso</p>";
-                }
-                else{
+                if($respuesta==null || password_verify($password, $respuesta['pass_usu'])==false) {
+                    echo "<br><p class='alert alert-danger'>Error de acceso</p>";                    
+                    
+                }else{
                     $_SESSION["ingreso"]="ok";
                     $_SESSION["id_usu"]=$respuesta["id_usuario"];
                     $_SESSION["completo_usu"]=$respuesta["nom_completo"];
@@ -43,9 +42,9 @@ class ControladorUsuario{
     }
 
     /*=====INFORMACION DE USUARIOS======*/
-    static public function ctrInfoUsuarios(){
-        $respuesta= ModeloUsaurio::mdlInfoUsuarios();
-        return $respuesta;
+    static public function ctrListaUsuarios(){
+        $respuesta= ModeloUsaurio::mdlListaUsuarios();
+        return $respuesta;        
     }
 
     /*=====REGISTRO DE NUEVO USUARIOS======*/
@@ -93,6 +92,11 @@ class ControladorUsuario{
         echo $respuesta;
     }
 
+    /*=====DETALLE DE USUARIO======*/
+    static public function ctrDetalleUsuarios($idUsuario){
+        $respuesta= ModeloUsaurio::mdlDetalleUsuario($idUsuario);
+        return $respuesta;        
+    }
 
 
 }
