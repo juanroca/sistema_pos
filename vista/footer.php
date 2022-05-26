@@ -81,16 +81,10 @@
 
 <!--modal SIMPLE-->
 <div class="modal fade" id="modal-df">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div id="contenido-default">
+  <div class="modal-dialog">    
+        <div class="modal-content" id="modal-content-df">
 
         </div>
-        <div id="formulario-df">
-
-        </div>
-      </div>
     </div>
     <!-- /.modal-content -->
   </div>
@@ -103,7 +97,7 @@
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-body" id="formulario">
-        <div id=formulario-sm>
+        <div class="modal-content" id=formulario-sm>
           <!-- Aqui va el contenido -->
         </div>
       </div>
