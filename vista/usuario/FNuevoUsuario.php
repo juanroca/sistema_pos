@@ -10,14 +10,14 @@ $fechaActual = date('m-d-Y h:i:s');
   <form action="" id="FRegNuevoUsuario" enctype="multipart/form-data">
     <div class="card-body">
       <div class="row">
-        <div class="form-group col-sm-2">
+        <div class="form-group col-sm-3">
           <label>Perfil</label>
           <select class="form-control form-control-sm" name="perfil" id="perfil" placeholder="SELECCIONE EL ROL">
             <option value="ADMIN">ADMIN</option>
             <option value="MODERADOR">MODERADOR</option>
           </select>
         </div>
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-3">
           <label>Nombres</label>
           <input type="text" style="text-transform:uppercase" class="form-control form-control-sm" id="nombres" name="nombres" placeholder="NOMBRES">
         </div>
@@ -61,7 +61,7 @@ $fechaActual = date('m-d-Y h:i:s');
       <p class="text-danger" id="error-pass"></p>
       <!-- /.card-body -->
       <div class="row">
-        <input type="file" name="fotoUsu" id="fotoUsu">
+        <input type="file" class="form-control" name="fotoUsu" id="fotoUsu">
       </div>
 
       <div class="modal-footer justify-content-between">

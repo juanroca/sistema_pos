@@ -5,7 +5,8 @@ $ruta = parse_url($_SERVER['REQUEST_URI']);
 //var_dump($ruta);
 if (isset($ruta["query"])) {
     if ($ruta["query"] == "ctrRegUsuario" ||
-        $ruta["query"] == "ctrEliUsuario")
+        $ruta["query"] == "ctrEliUsuario" ||
+        $ruta["query"] == "ctrEditUsuario")
     {
         $metodo = $ruta["query"];
         $usuario = new ControladorUsuario();
@@ -110,6 +111,64 @@ class ControladorUsuario
         require_once "../modelo/usuarioModelo.php";
         $idUsuario=$_POST["idUsuario"];
         $respuesta=ModeloUsaurio::mdlEliUsuario($idUsuario);
+        echo $respuesta;
+    }
+
+    /*=====EDITAR USUARIOS======*/
+    static public function ctrEditUsuario()
+    {
+        require_once "../modelo/usuarioModelo.php";
+        $idUsuario=$_POST["idUsuario"];
+        $fechaActual = date('Y-m-d');
+        
+        $nombres = strtoupper(trim($_POST['nombres']));
+        $apPaterno = strtoupper(trim($_POST['apPaterno']));
+        $apMaterno = strtoupper(trim($_POST['apMaterno']));
+        $ci = trim($_POST['ci']);
+        $perfil = strtoupper(trim($_POST['perfil']));        
+        //$loginUsuario = trim($_POST['login']);
+        $telf = trim($_POST['telefono']);
+        $sucursal = strtoupper(trim($_POST['sucursal']));
+        $estado = trim($_POST['estado']);
+        /* *****ACTUALIZAR PASSWORD****** */
+        $passActual = $_POST['pass1Actual'];
+        $passEdi = $_POST['pass1'];
+            if($passActual!=$passEdi){
+            $password = password_hash(trim($_POST['pass1']), PASSWORD_DEFAULT);
+            } else{
+            $password = $_POST['pass1Actual'];
+            }
+        /* *****ACTUALIZAR FOTO****** */
+        $fotoUsu = $_FILES['fotoUsu'];
+        if($fotoUsu['name']==""){           
+            $nomFoto=$_POST['fotoUsuActual']; //recuperamos la información del formulario
+        }else{            
+            $nomFoto = $fotoUsu['name'];   //captura el nombre del archivo de la imagen en la variable $imagen 
+            $rutaFoto = $fotoUsu['tmp_name'];
+            $rutaSave = '../assest/img/usuario/';
+            move_uploaded_file($rutaFoto, $rutaSave . $nomFoto); //Subir el nombre de la imagen al sistema
+        };
+            
+
+        $data = array(
+            'idUsuario' => $idUsuario,
+            'perfil' => $perfil,
+            'nombres' => $nombres,
+            'paterno' => $apPaterno,
+            'materno' => $apMaterno,
+            'nom_completo' => $nombres . ' ' . $apPaterno . ' ' . $apMaterno,
+            'ci' => $ci,
+            'telefono' => $telf,
+            'sucursal' => $sucursal,
+            'estado' => $estado,
+            'pass_usu' => $password,
+            'foto' => $nomFoto,
+            //'usu_crea'=>session('usuario'),
+            //'edit_usu'=>$editor,
+            'fecha_edit_usu'=>$fechaActual,
+        );
+        //var_dump($data);
+        $respuesta = ModeloUsaurio::mdlEditUsuario($data);
         echo $respuesta;
     }
 }

@@ -50,9 +50,9 @@ $usuario = ControladorUsuario::ctrDetalleUsuarios($idUsuario);
                     <td>
                         <?php
                         if ($usuario['estado'] == "1") {
-                            echo "<small class='badge badge-success'>Habilitado</small>";
+                            echo "<small class='badge badge-success'>ACTIVO</small>";
                         } else {
-                            echo "<small class='badge badge-danger'>Deshabilitado</small>";
+                            echo "<small class='badge badge-danger'>INACTIVO</small>";
                         }
                         ?>
                     </td>
