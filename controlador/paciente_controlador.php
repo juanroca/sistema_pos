@@ -4,58 +4,29 @@ $ruta = parse_url($_SERVER['REQUEST_URI']);
 //echo $ruta["query"];
 //var_dump($ruta);
 if (isset($ruta["query"])) {
-    if ($ruta["query"] == "ctrRegUsuario" ||
-        $ruta["query"] == "ctrEliUsuario" ||
-        $ruta["query"] == "ctrEditUsuario")
+    if ($ruta["query"] == "ctrRegPaciente" ||
+        $ruta["query"] == "ctrEliPaciente" ||
+        $ruta["query"] == "ctrEditPaciente")
     {
         $metodo = $ruta["query"];
-        $usuario = new ControladorUsuario();
-        $usuario->$metodo();
+        $paciente = new ControladorPaciente();
+        $paciente->$metodo();
     }
 }
 
-class ControladorUsuario
+class ControladorPaciente
 {
-    /*=====acceso al sistema======*/
-    static public function ctrIngresoUsuario()
+    /*=====MOSTRAR LISTA DE PACIENTES======*/
+    static public function ctrListaPacientes()
     {
-        if (isset($_POST["loginUsuario"]) && isset($_POST["passUsuario"])) {
-            echo "Se esta ingresando: " . $_POST["passUsuario"];
-
-            /*Recepcionar los datos del formulario login.php*/
-            $usuario = $_POST["loginUsuario"]; //capturamos el login
-            $password = $_POST["passUsuario"]; //capturamos el password
-
-            /*enviar datos al modelo */
-            $respuesta = ModeloUsuario::mdlMostrarUsuario($usuario);
-            echo $respuesta;
-
-            if ($respuesta == null || password_verify($password, $respuesta['pass_usu']) == false) {
-                echo "<br><p class='alert alert-danger'>Error de acceso</p>";
-            } else {
-                $_SESSION["ingreso"] = "ok";
-                $_SESSION["id_usu"] = $respuesta["id_usuario"];
-                $_SESSION["completo_usu"] = $respuesta["nom_completo"];
-                $_SESSION["perfil_usu"] = $respuesta["perfil"];
-                $_SESSION["foto_usu"] = $respuesta["foto"];
-                echo '<script>
-                    window.location="inicio";
-                    </script>';
-            }
-        }
-    }
-
-    /*=====MOSTRAR LISTA DE USUARIOS======*/
-    static public function ctrListaUsuarios()
-    {
-        $respuesta = ModeloUsuario::mdlListaUsuarios();
+        $respuesta = ModeloPaciente::mdlListaPacientes();
         return $respuesta;
     }
 
-    /*=====REGISTRO DE NUEVO USUARIOS======*/
-    static public function ctrRegUsuario()
+    /*=====REGISTRO DE NUEVO PacienteS======*/
+    static public function ctrRegPaciente()
     {
-        require_once "../modelo/usuarioModelo.php";
+        require_once "../modelo/PacienteModelo.php";
         $fechaActual = date('Y-m-d');
         $horaActual = date('h:i:s');
 
@@ -65,7 +36,7 @@ class ControladorUsuario
         $ci = trim($_POST['ci']);
         $perfil = strtoupper(trim($_POST['perfil']));
         //$estado=strtoupper(trim($_POST['estado']));
-        $loginUsuario = trim($_POST['login']);
+        $loginPaciente = trim($_POST['login']);
         $password = password_hash(trim($_POST['pass1']), PASSWORD_DEFAULT);
         $telf = trim($_POST['telefono']);
         $sucursal = strtoupper(trim($_POST['sucursal']));
@@ -73,7 +44,7 @@ class ControladorUsuario
         $fotoUsu = $_FILES['fotoUsu'];
         $nomFoto = $fotoUsu['name'];   //captura el nombre del archivo de la imagen en la variable $imagen 
         $rutaFoto = $fotoUsu['tmp_name'];
-        $rutaSave = '../assest/img/usuario/';
+        $rutaSave = '../assest/img/Paciente/';
         move_uploaded_file($rutaFoto, $rutaSave . $nomFoto); //Subir el nombre de la imagen al sistema
 
         $data = array(
@@ -86,7 +57,7 @@ class ControladorUsuario
             'ci' => $ci,
             'telefono' => $telf,
             'sucursal' => $sucursal,
-            'login_usu' => $loginUsuario,
+            'login_usu' => $loginPaciente,
             'pass_usu' => $password,
             'foto' => $nomFoto,
             //'usu_crea'=>session('login'),
@@ -94,31 +65,31 @@ class ControladorUsuario
             //'fecha_edit_usu'=>$fechaActual,
         );
         //var_dump($data);
-        $respuesta = ModeloUsuario::mdlRegUsuario($data);
+        $respuesta = ModeloPaciente::mdlRegPaciente($data);
         echo $respuesta;
     }
 
-    /*=====DETALLE DE USUARIO======*/
-    static public function ctrDetalleUsuarios($idUsuario)
+    /*=====DETALLE DE Paciente======*/
+    static public function ctrDetallePacientes($idPaciente)
     {
-        $respuesta = ModeloUsuario::mdlDetalleUsuario($idUsuario);
+        $respuesta = ModeloPaciente::mdlDetallePaciente($idPaciente);
         return $respuesta;
     }
 
-    /*=====ELIMINAR DE USUARIO======*/
-    static public function ctrEliUsuario()
+    /*=====ELIMINAR DE Paciente======*/
+    static public function ctrEliPaciente()
     {
-        require_once "../modelo/usuarioModelo.php";
-        $idUsuario=$_POST["idUsuario"];
-        $respuesta=ModeloUsuario::mdlEliUsuario($idUsuario);
+        require_once "../modelo/PacienteModelo.php";
+        $idPaciente=$_POST["idPaciente"];
+        $respuesta=ModeloPaciente::mdlEliPaciente($idPaciente);
         echo $respuesta;
     }
 
-    /*=====EDITAR USUARIOS======*/
-    static public function ctrEditUsuario()
+    /*=====EDITAR PacienteS======*/
+    static public function ctrEditPaciente()
     {
-        require_once "../modelo/usuarioModelo.php";
-        $idUsuario=$_POST["idUsuario"];
+        require_once "../modelo/PacienteModelo.php";
+        $idPaciente=$_POST["idPaciente"];
         $fechaActual = date('Y-m-d');
         
         $nombres = strtoupper(trim($_POST['nombres']));
@@ -126,7 +97,7 @@ class ControladorUsuario
         $apMaterno = strtoupper(trim($_POST['apMaterno']));
         $ci = trim($_POST['ci']);
         $perfil = strtoupper(trim($_POST['perfil']));        
-        //$loginUsuario = trim($_POST['login']);
+        //$loginPaciente = trim($_POST['login']);
         $telf = trim($_POST['telefono']);
         $sucursal = strtoupper(trim($_POST['sucursal']));
         $estado = trim($_POST['estado']);
@@ -145,13 +116,13 @@ class ControladorUsuario
         }else{            
             $nomFoto = $fotoUsu['name'];   //captura el nombre del archivo de la imagen en la variable $imagen 
             $rutaFoto = $fotoUsu['tmp_name'];
-            $rutaSave = '../assest/img/usuario/';
+            $rutaSave = '../assest/img/Paciente/';
             move_uploaded_file($rutaFoto, $rutaSave . $nomFoto); //Subir el nombre de la imagen al sistema
         };
             
 
         $data = array(
-            'idUsuario' => $idUsuario,
+            'idPaciente' => $idPaciente,
             'perfil' => $perfil,
             'nombres' => $nombres,
             'paterno' => $apPaterno,
@@ -163,12 +134,12 @@ class ControladorUsuario
             'estado' => $estado,
             'pass_usu' => $password,
             'foto' => $nomFoto,
-            //'usu_crea'=>session('usuario'),
+            //'usu_crea'=>session('Paciente'),
             //'edit_usu'=>$editor,
             'fecha_edit_usu'=>$fechaActual,
         );
         //var_dump($data);
-        $respuesta = ModeloUsuario::mdlEditUsuario($data);
+        $respuesta = ModeloPaciente::mdlEditPaciente($data);
         echo $respuesta;
     }
 }

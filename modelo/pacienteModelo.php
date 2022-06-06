@@ -1,21 +1,11 @@
 <?php
 require_once "conexion.php";
-class ModeloUsuario
+class ModeloPaciente
 {
-    /*=====ACCESO DE USUARIO AL SISTEMA======*/
-    static public function mdlMostrarUsuario($valor)
+    /*=====LISTA PACIENTES======*/
+    static public function mdlListaPacientes()
     {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE login_usu='$valor'");
-        $stmt->execute();  //ejecutamos la consulta
-        return $stmt->fetch(); //retornar el valor recuperado con la consulta
-        $stmt->close;  //cerramos la conexion
-        $stmt->null; //vaciamos cache       
-    }
-
-    /*=====LISTA USUARIOS======*/
-    static public function mdlListaUsuarios()
-    {
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM paciente");
         $stmt->execute();
         return $stmt->fetchAll();
         //cerramos la conexion
@@ -23,8 +13,8 @@ class ModeloUsuario
         //vaciamos cache
         $stmt->null;
     }
-    /*=====REGISTRAR NUEVO USUARIO======*/
-    static public function mdlRegUsuario($data)
+    /*=====REGISTRAR NUEVO Paciente======*/
+    static public function mdlRegPaciente($data)
     {
         $nombre = $data["nombres"];
         $paterno = $data["paterno"];
@@ -39,7 +29,7 @@ class ModeloUsuario
         $pass_usu = $data["pass_usu"];
         $foto = $data["foto"];
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO usuario(nombres, paterno, materno, nom_completo, ci, telf, perfil, estado, sucursal, login_usu, pass_usu, foto) VALUES (
+        $stmt = Conexion::conectar()->prepare("INSERT INTO Paciente(nombres, paterno, materno, nom_completo, ci, telf, perfil, estado, sucursal, login_usu, pass_usu, foto) VALUES (
             '$nombre', 
             '$paterno', 
             '$materno', 
@@ -62,21 +52,21 @@ class ModeloUsuario
         $stmt->null;
     }
 
-    /*=====DETALLE USUARIO======*/
-    static public function mdlDetalleUsuario($idUsuario)
+    /*=====DETALLE Paciente======*/
+    static public function mdlDetallePaciente($idPaciente)
     {
 
-        $stmt = Conexion::conectar()->prepare("SELECT * FROM usuario WHERE id_usuario='$idUsuario'");
+        $stmt = Conexion::conectar()->prepare("SELECT * FROM Paciente WHERE id_Paciente='$idPaciente'");
         $stmt->execute();
         return $stmt->fetch();
         $stmt->close;  //cerramos la conexion
         $stmt->null; //vaciamos cache       
     }
 
-    /*=====ELIMINAR USUARIO======*/
-    static public function mdlEliUsuario($idUsuario)
+    /*=====ELIMINAR Paciente======*/
+    static public function mdlEliPaciente($idPaciente)
     {
-        $stmt = Conexion::conectar()->prepare("DELETE FROM usuario WHERE id_usuario=$idUsuario");
+        $stmt = Conexion::conectar()->prepare("DELETE FROM Paciente WHERE id_Paciente=$idPaciente");
         if ($stmt->execute()) {
             return "eliminado";
         } else {
@@ -86,10 +76,10 @@ class ModeloUsuario
         $stmt->null; //vaciamos cache 
     }
 
-    /*=====EDITAR USUARIO======*/
-    static public function mdlEditUsuario($data)
+    /*=====EDITAR Paciente======*/
+    static public function mdlEditPaciente($data)
     {
-        $idUsuario = $data['idUsuario'];
+        $idPaciente = $data['idPaciente'];
         $nombre = $data["nombres"];
         $paterno = $data["paterno"];
         $materno = $data["materno"];
@@ -102,7 +92,7 @@ class ModeloUsuario
         $pass_usu = $data["pass_usu"];
         $foto = $data["foto"];
 
-        $stmt = Conexion::conectar()->prepare("UPDATE usuario SET nombres='$nombre', paterno='$paterno', materno='$materno', nom_completo='$nom_completo', ci='$ci', telf='$telefono', perfil='$perfil', estado='$estado', sucursal='$sucursal', pass_usu='$pass_usu', foto='$foto' WHERE id_usuario='$idUsuario'");
+        $stmt = Conexion::conectar()->prepare("UPDATE Paciente SET nombres='$nombre', paterno='$paterno', materno='$materno', nom_completo='$nom_completo', ci='$ci', telf='$telefono', perfil='$perfil', estado='$estado', sucursal='$sucursal', pass_usu='$pass_usu', foto='$foto' WHERE id_Paciente='$idPaciente'");
 
         if ($stmt->execute()) {
             return "correcto";

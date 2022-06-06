@@ -71,12 +71,9 @@
                 </td>
               </tr>
             <?php
-
             }
             ?>
-
           </tbody>
-
         </table>
       </div>
       <!-- /.card-body -->
