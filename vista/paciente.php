@@ -26,17 +26,15 @@
               <th>Sexo</th>
               <th>Centro de salud</th>
               <th>Foto</th>
-              <td>
-                <button class="btn btn-primary" onclick="MNuevoPaciente()">Nuevo</button>
-              </td>
+              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
             <?php
             $listaPaciente = ControladorPaciente::ctrListaPacientes();
-            var_dump($paciente);
+            //var_dump($paciente);
 
-            /*foreach ($listaPaciente as $paciente) {
+            foreach ($listaPaciente as $paciente) {
             ?>
               <tr>
                 <td><?php echo $paciente['id_paciente']; ?> </td>
@@ -72,7 +70,7 @@
               </tr>
             <?php
 
-            }*/
+            }
             ?>
 
           </tbody>

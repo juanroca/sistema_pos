@@ -34,10 +34,11 @@ if (isset($_SESSION["ingreso"]) && $_SESSION["ingreso"] == "ok") {
       $_GET["ruta"] == "inicio" ||
       $_GET["ruta"] == "usuario" ||
       $_GET["ruta"] == "paciente" ||
+      $_GET["ruta"] == "FNuevoPaciente" ||
       $_GET["ruta"] == "salir"
     ) {
       include "vista/asideMenu.php";
-      include "vista/" . $_GET["ruta"] . ".php";
+      include "vista/".$_GET["ruta"].".php";
       include "vista/footer.php";
     } else {
       include "404.php";

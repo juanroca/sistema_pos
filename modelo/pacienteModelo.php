@@ -16,32 +16,95 @@ class ModeloPaciente
     /*=====REGISTRAR NUEVO Paciente======*/
     static public function mdlRegPaciente($data)
     {
-        $nombre = $data["nombres"];
-        $paterno = $data["paterno"];
-        $materno = $data["materno"];
-        $nom_completo = $data["nom_completo"];
-        $ci = $data["ci"];
-        $telefono = $data["telefono"];
-        $perfil = $data["perfil"];
-        //$estado=$data["estado"];
-        $sucursal = $data["sucursal"];
-        $login_usu = $data["login_usu"];
-        $pass_usu = $data["pass_usu"];
-        $foto = $data["foto"];
+        $dpto=$data["dpto"];
+        $municipio=$data["municipio"];
+        $establec_salud=$data["establec_salud"];
+        $num_hc=$data["num_hc"];
+        $ci_med=$data["ci_med"];
 
-        $stmt = Conexion::conectar()->prepare("INSERT INTO Paciente(nombres, paterno, materno, nom_completo, ci, telf, perfil, estado, sucursal, login_usu, pass_usu, foto) VALUES (
-            '$nombre', 
-            '$paterno', 
-            '$materno', 
-            '$nom_completo', 
-            '$ci', 
-            '$telefono', 
-            '$perfil', 
-            '1', 
-            '$sucursal', 
-            '$login_usu', 
-            '$pass_usu', 
-            '$foto')");
+        $nombres=$data["nombres"];
+        $paterno=$data["paterno"];
+        $materno=$data["materno"];
+        $nom_completo=$data["nom_completo"];
+        $ci=$data["ci"];
+        $edad=$data["edad"];
+        $sexo=$data["sexo"];
+        $lugar_nac=$data["lugar_nac"];
+        $fecha_nac=$data["fecha_nac"];
+        $ocupa=$data["ocupa"];
+        $domicilio=$data["domicilio"];
+        $telf=$data["telf"];
+        $instrucción=$data["instrucción"];
+        $eCivil=$data["eCivil"];
+        $nacOrig=$data["nacOrig"];
+        $idioma=$data["idioma"];
+        $foto_paciente=$data["foto_paciente"];
+
+        $estado=$data["estado"];
+        //$autor=$data["autor"];
+        $fecha_crea=$data["fecha_crea"];
+        //$edit=$data["edit"];
+        //$fecha_edit=$data["fecha_edit"];
+        //$borrar=$data["borrar"];
+        //$fecha_del=$data["fecha_del"];
+
+
+        $stmt = Conexion::conectar()->prepare("INSERT INTO paciente(
+            dpto,
+            municipio,
+            establec_salud,
+            num_hc,
+            ci_med,
+
+            nombres,
+            paterno,
+            materno,
+            nom_completo,
+            ci,
+            edad,
+            sexo,
+            lugar_nac,
+            fecha_nac,
+            ocupa,
+            domicilio,
+            telf,
+            instrucción,
+            eCivil,
+            nacOrig,
+            idioma,
+            foto_paciente,
+
+            estado,
+            fecha_crea
+            ) VALUES (
+                '$dpto',
+                '$municipio',
+                '$establec_salud',
+                '$num_hc',
+                '$ci_med',
+
+                '$nombres',
+                '$paterno',
+                '$materno',
+                '$nom_completo',
+                '$ci',
+                '$edad',
+                '$sexo',
+                '$lugar_nac'
+                '$fecha_nac',
+                '$ocupa',
+                '$domicilio',
+                '$telf',
+                '$instrucción',
+                '$eCivil',
+                '$nacOrig',
+                '$idioma',
+                '$foto_paciente',                
+
+                '$estado',
+                '$fecha_crea'
+                
+                )");
 
         if ($stmt->execute()) {
             return "correcto";

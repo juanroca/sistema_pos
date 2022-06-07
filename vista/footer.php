@@ -34,6 +34,7 @@
   <!-- SweetAlert2 -->
   <script src="assest/plugins/sweetalert2/sweetalert2.min.js"></script>
   <!-- Script para el Data table-->
+
   <script>
     $(function() {
       //PARA LA VISTA USUARIO
@@ -65,7 +66,6 @@
         }
       }).buttons().container().appendTo('#dataTableUsuario_wrapper .col-md-6:eq(0)');
 
-      //PARA LA VISTA PACIENTE
       $("#dataTablePaciente").DataTable({
         "responsive": true,
         "lengthChange": false,
@@ -93,7 +93,6 @@
           }
         }
       }).buttons().container().appendTo('#dataTablePaciente_wrapper .col-md-6:eq(0)');
-
     });
   </script>
 

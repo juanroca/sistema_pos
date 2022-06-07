@@ -26,43 +26,71 @@ class ControladorPaciente
     /*=====REGISTRO DE NUEVO PacienteS======*/
     static public function ctrRegPaciente()
     {
-        require_once "../modelo/PacienteModelo.php";
+        require_once "../modelo/pacienteModelo.php";
         $fechaActual = date('Y-m-d');
         $horaActual = date('h:i:s');
 
-        $nombres = strtoupper(trim($_POST['nombres']));
-        $apPaterno = strtoupper(trim($_POST['apPaterno']));
-        $apMaterno = strtoupper(trim($_POST['apMaterno']));
-        $ci = trim($_POST['ci']);
-        $perfil = strtoupper(trim($_POST['perfil']));
-        //$estado=strtoupper(trim($_POST['estado']));
-        $loginPaciente = trim($_POST['login']);
-        $password = password_hash(trim($_POST['pass1']), PASSWORD_DEFAULT);
-        $telf = trim($_POST['telefono']);
-        $sucursal = strtoupper(trim($_POST['sucursal']));
+        $dpto= strtoupper(trim($_POST['dpto']));
+        $municipio= strtoupper(trim($_POST['munic']));
+        $establec_salud= strtoupper(trim($_POST['consultorio']));
+        $num_hc= trim($_POST['numHC']);;
+        $ci_med= trim($_POST['ci_med']);;
 
-        $fotoUsu = $_FILES['fotoUsu'];
-        $nomFoto = $fotoUsu['name'];   //captura el nombre del archivo de la imagen en la variable $imagen 
-        $rutaFoto = $fotoUsu['tmp_name'];
-        $rutaSave = '../assest/img/Paciente/';
+        $nombres= strtoupper(trim($_POST['nombres']));
+        $paterno= strtoupper(trim($_POST['apPaterno']));
+        $materno= strtoupper(trim($_POST['apMaterno']));
+        //$nom_completo= ;
+        $ci= trim($_POST['ci_pac']);;
+        $edad= trim($_POST['edad']);;
+        $sexo= strtoupper(trim($_POST['sexo']));
+        $lugar_nac= strtoupper(trim($_POST['lug_nac']));
+        $fecha_nac= trim($_POST['f_nac']);;
+        $ocupa= strtoupper(trim($_POST['ocupa']));
+        $domicilio= strtoupper(trim($_POST['dom']));
+        $telf= trim($_POST['telf']);;
+        $instrucción= strtoupper(trim($_POST['instruccion']));
+        $eCivil= strtoupper(trim($_POST['eCivil']));
+        $nacOrig= strtoupper(trim($_POST['nacOrig']));
+        $idioma= strtoupper(trim($_POST['idioma']));     
+        
+        $foto = $_FILES['fotoPac'];
+        $nomFoto = $foto['name'];   //captura el nombre del archivo de la imagen en la variable $imagen 
+        $rutaFoto = $foto['tmp_name'];
+        $rutaSave = './assest/img/paciente/';
         move_uploaded_file($rutaFoto, $rutaSave . $nomFoto); //Subir el nombre de la imagen al sistema
 
         $data = array(
-            'perfil' => $perfil,
-            'estado' => 'ACTIVO',
-            'nombres' => $nombres,
-            'paterno' => $apPaterno,
-            'materno' => $apMaterno,
-            'nom_completo' => $nombres . ' ' . $apPaterno . ' ' . $apMaterno,
-            'ci' => $ci,
-            'telefono' => $telf,
-            'sucursal' => $sucursal,
-            'login_usu' => $loginPaciente,
-            'pass_usu' => $password,
-            'foto' => $nomFoto,
-            //'usu_crea'=>session('login'),
-            //'edit_usu'=>$editor,
-            //'fecha_edit_usu'=>$fechaActual,
+            'dpto'=>$dpto,
+            'municipio'=>$municipio,
+            'establec_salud'=>$establec_salud,
+            'num_hc'=>$num_hc,
+            'ci_med'=>$ci_med,
+            
+            'nombres'=>$nombres,
+            'paterno'=>$paterno,
+            'materno'=>$materno,
+            'nom_completo'=>$nombres." ".$paterno." ".$materno,
+            'ci'=>$ci,
+            'edad'=>$edad,
+            'sexo'=>$sexo,
+            'lugar_nac'=>$lugar_nac,
+            'fecha_nac'=>$fecha_nac,
+            'ocupa'=>$ocupa,
+            'domicilio'=>$domicilio,
+            'telf'=>$telf,
+            'instrucción'=>$instrucción,
+            'eCivil'=>$eCivil,
+            'nacOrig'=>$nacOrig,
+            'idioma'=>$idioma,
+            'foto_paciente' =>$nomFoto,
+            
+            'estado'=>'ACTIVO',
+            //'autor'=>session('usuario'),
+            'fecha_crea'=>$fechaActual,
+            //'edit'=>$edit,
+            //'fecha_edit'=>$fecha_edit,
+            //'borrar'=>$borrar,
+            //'fecha_del'=>$fecha_del,            
         );
         //var_dump($data);
         $respuesta = ModeloPaciente::mdlRegPaciente($data);

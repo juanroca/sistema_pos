@@ -14,41 +14,30 @@ function MNuevoPaciente() {
     )
 }
 
-/* ***** FUNCION REGISTRO NUEVO USUARIO */
-function RegNuevoUsuario() {
-    var pass1 = document.getElementById("pass1").value; //extraemos el dato de password
-    var pass2 = document.getElementById("pass2").value; //extraemos el dato de password2
-    //console.log(pass1,pass2);
+/* ***** FUNCION REGISTRO NUEVO PACIENTE */
+function RegNuevoPaciente() {
+    var formData = new FormData($('#FRegNuevoPaciente')[0]);
+    $.ajax({
+        type: "POST",
+        url: "controlador/paciente_controlador.php?ctrRegPaciente",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            Swal.fire({
+                icon: 'success',
+                showConfirmButton: true,
+                title: 'El paciente ha sido registrado correctamente',
+                timer: 2500,
+            });
+            setTimeout(
+                function () {
+                    location.href = "paciente";
+                }, 500);
+        }
+    })
 
-    if (pass1 == pass2) {
-        var formData = new FormData($('#FRegNuevoUsuario')[0]);
-        $.ajax({
-            type: "POST",
-            url: "controlador/usuario_controlador.php?ctrRegUsuario",
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (data) {
-
-                if (data == "correcto") {
-                    Swal.fire({
-                        icon: 'success',
-                        showConfirmButton: true,
-                        title: 'El usuario ha sido registrado correctamente',
-                        timer: 1500
-                    });
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1200);
-                }
-            }
-        })
-
-    } else {
-        document.getElementById("error-pass").innerHTML = "Las contraseñas no coiniden";
-        //alert("Las contraseñas no coinciden!!!");
-    }
 }
 
 /* ***** MODAL VER USUARIO */
