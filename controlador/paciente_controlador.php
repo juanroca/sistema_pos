@@ -23,74 +23,74 @@ class ControladorPaciente
         return $respuesta;
     }
 
-    /*=====REGISTRO DE NUEVO PacienteS======*/
-    static public function ctrRegPaciente()
+    /*=====REGISTRO DE NUEVO PACIENTE======*/
+static public function ctrRegPaciente()
     {
         require_once "../modelo/pacienteModelo.php";
-        $fechaActual = date('Y-m-d');
-        $horaActual = date('h:i:s');
+        $C_fechaActual = date('Y-m-d');
+        $C_horaActual = date('h:i:s');
 
-        $dpto= strtoupper(trim($_POST['dpto']));
-        $municipio= strtoupper(trim($_POST['munic']));
-        $establec_salud= strtoupper(trim($_POST['consultorio']));
-        $num_hc= trim($_POST['numHC']);;
-        $ci_med= trim($_POST['ci_med']);;
+        $C_dpto= strtoupper(trim($_POST['dpto']));
+        $C_municipio= strtoupper(trim($_POST['munic']));
+        $C_establec_salud= strtoupper(trim($_POST['consultorio']));
+        $C_num_hc= trim($_POST['numHC']);
+        $C_ci_med= trim($_POST['ci_med']);
 
-        $nombres= strtoupper(trim($_POST['nombres']));
-        $paterno= strtoupper(trim($_POST['apPaterno']));
-        $materno= strtoupper(trim($_POST['apMaterno']));
-        //$nom_completo= ;
-        $ci= trim($_POST['ci_pac']);;
-        $edad= trim($_POST['edad']);;
-        $sexo= strtoupper(trim($_POST['sexo']));
-        $lugar_nac= strtoupper(trim($_POST['lug_nac']));
-        $fecha_nac= trim($_POST['f_nac']);;
-        $ocupa= strtoupper(trim($_POST['ocupa']));
-        $domicilio= strtoupper(trim($_POST['dom']));
-        $telf= trim($_POST['telf']);;
-        $instrucción= strtoupper(trim($_POST['instruccion']));
-        $eCivil= strtoupper(trim($_POST['eCivil']));
-        $nacOrig= strtoupper(trim($_POST['nacOrig']));
-        $idioma= strtoupper(trim($_POST['idioma']));     
+        $C_nombres= strtoupper(trim($_POST['nombres']));
+        $C_paterno= strtoupper(trim($_POST['apPaterno']));
+        $C_materno= strtoupper(trim($_POST['apMaterno']));
+        //$C_nom_completo= ;
+        $C_ci= trim($_POST['ci_pac']);
+        $C_edad= trim($_POST['edad']);
+        $C_sexo= strtoupper(trim($_POST['sexo']));
+        $C_lugar_nac= strtoupper(trim($_POST['lug_nac']));
+        $C_fecha_nac= trim($_POST['f_nac']);
+        $C_ocupa= strtoupper(trim($_POST['ocupa']));
+        $C_domicilio= strtoupper(trim($_POST['dom']));
+        $C_telf= trim($_POST['telf']);
+        $C_instrucción= strtoupper(trim($_POST['instruccion']));
+        $C_eCivil= strtoupper(trim($_POST['eCivil']));
+        $C_nacOrig= strtoupper(trim($_POST['nacOrig']));
+        $C_idioma= strtoupper(trim($_POST['idioma']));     
         
-        $foto = $_FILES['fotoPac'];
-        $nomFoto = $foto['name'];   //captura el nombre del archivo de la imagen en la variable $imagen 
-        $rutaFoto = $foto['tmp_name'];
-        $rutaSave = './assest/img/paciente/';
-        move_uploaded_file($rutaFoto, $rutaSave . $nomFoto); //Subir el nombre de la imagen al sistema
+        $C_foto = $_FILES['fotoPac'];
+        $C_nomFoto = $C_foto['name'];   //captura el nombre del archivo de la imagen en la variable $C_imagen 
+        $C_rutaFoto = $C_foto['tmp_name'];
+        $C_rutaSave = '../assest/img/paciente/';
+        move_uploaded_file($C_rutaFoto, $C_rutaSave.$C_nomFoto); //Subir el nombre de la imagen al sistema
 
         $data = array(
-            'dpto'=>$dpto,
-            'municipio'=>$municipio,
-            'establec_salud'=>$establec_salud,
-            'num_hc'=>$num_hc,
-            'ci_med'=>$ci_med,
+            'dpto'=>$C_dpto,
+            'municipio'=>$C_municipio,
+            'establec_salud'=>$C_establec_salud,
+            'num_hc'=>$C_num_hc,
+            'ci_med'=>$C_ci_med,
             
-            'nombres'=>$nombres,
-            'paterno'=>$paterno,
-            'materno'=>$materno,
-            'nom_completo'=>$nombres." ".$paterno." ".$materno,
-            'ci'=>$ci,
-            'edad'=>$edad,
-            'sexo'=>$sexo,
-            'lugar_nac'=>$lugar_nac,
-            'fecha_nac'=>$fecha_nac,
-            'ocupa'=>$ocupa,
-            'domicilio'=>$domicilio,
-            'telf'=>$telf,
-            'instrucción'=>$instrucción,
-            'eCivil'=>$eCivil,
-            'nacOrig'=>$nacOrig,
-            'idioma'=>$idioma,
-            'foto_paciente' =>$nomFoto,
+            'nombres'=>$C_nombres,
+            'paterno'=>$C_paterno,
+            'materno'=>$C_materno,
+            'nom_completo'=>$C_nombres." ".$C_paterno." ".$C_materno,
+            'ci'=>$C_ci,
+            'edad'=>$C_edad,
+            'sexo'=>$C_sexo,
+            'lugar_nac'=>$C_lugar_nac,
+            'fecha_nac'=>$C_fecha_nac,
+            'ocupa'=>$C_ocupa,
+            'domicilio'=>$C_domicilio,
+            'telf'=>$C_telf,
+            'instrucción'=>$C_instrucción,
+            'eCivil'=>$C_eCivil,
+            'nacOrig'=>$C_nacOrig,
+            'idioma'=>$C_idioma,
+            'foto_paciente'=>$C_nomFoto,
             
             'estado'=>'ACTIVO',
             //'autor'=>session('usuario'),
-            'fecha_crea'=>$fechaActual,
-            //'edit'=>$edit,
-            //'fecha_edit'=>$fecha_edit,
-            //'borrar'=>$borrar,
-            //'fecha_del'=>$fecha_del,            
+            'fecha_crea'=>$C_fechaActual,
+            //'edit'=>$C_edit,
+            //'fecha_edit'=>$C_fecha_edit,
+            //'borrar'=>$C_borrar,
+            //'fecha_del'=>$C_fecha_del,            
         );
         //var_dump($data);
         $respuesta = ModeloPaciente::mdlRegPaciente($data);

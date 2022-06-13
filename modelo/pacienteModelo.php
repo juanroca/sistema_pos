@@ -16,37 +16,37 @@ class ModeloPaciente
     /*=====REGISTRAR NUEVO Paciente======*/
     static public function mdlRegPaciente($data)
     {
-        $dpto=$data["dpto"];
-        $municipio=$data["municipio"];
-        $establec_salud=$data["establec_salud"];
-        $num_hc=$data["num_hc"];
-        $ci_med=$data["ci_med"];
+        $M_dpto=$data["dpto"];
+        $M_municipio=$data["municipio"];
+        $M_establec_salud=$data["establec_salud"];
+        $M_num_hc=$data["num_hc"];
+        $M_ci_med=$data["ci_med"];
 
-        $nombres=$data["nombres"];
-        $paterno=$data["paterno"];
-        $materno=$data["materno"];
-        $nom_completo=$data["nom_completo"];
-        $ci=$data["ci"];
-        $edad=$data["edad"];
-        $sexo=$data["sexo"];
-        $lugar_nac=$data["lugar_nac"];
-        $fecha_nac=$data["fecha_nac"];
-        $ocupa=$data["ocupa"];
-        $domicilio=$data["domicilio"];
-        $telf=$data["telf"];
-        $instrucción=$data["instrucción"];
-        $eCivil=$data["eCivil"];
-        $nacOrig=$data["nacOrig"];
-        $idioma=$data["idioma"];
-        $foto_paciente=$data["foto_paciente"];
+        $M_nombres=$data["nombres"];
+        $M_paterno=$data["paterno"];
+        $M_materno=$data["materno"];
+        $M_nom_completo=$data["nom_completo"];
+        $M_ci=$data["ci"];
+        $M_edad=$data["edad"];
+        $M_sexo=$data["sexo"];
+        $M_lugar_nac=$data["lugar_nac"];
+        $M_fecha_nac=$data["fecha_nac"];
+        $M_ocupa=$data["ocupa"];
+        $M_domicilio=$data["domicilio"];
+        $M_telf=$data["telf"];
+        $M_instrucción=$data["instrucción"];
+        $M_eCivil=$data["eCivil"];
+        $M_nacOrig=$data["nacOrig"];
+        $M_idioma=$data["idioma"];
+        $M_foto_paciente=$data["foto_paciente"];
 
-        $estado=$data["estado"];
-        //$autor=$data["autor"];
-        $fecha_crea=$data["fecha_crea"];
-        //$edit=$data["edit"];
-        //$fecha_edit=$data["fecha_edit"];
-        //$borrar=$data["borrar"];
-        //$fecha_del=$data["fecha_del"];
+        $M_estado=$data["estado"];
+        //$M_autor=$data["autor"];
+        $M_fecha_crea=$data["fecha_crea"];
+        //$M_edit=$data["edit"];
+        //$M_fecha_edit=$data["fecha_edit"];
+        //$M_borrar=$data["borrar"];
+        //$M_fecha_del=$data["fecha_del"];
 
 
         $stmt = Conexion::conectar()->prepare("INSERT INTO paciente(
@@ -54,7 +54,7 @@ class ModeloPaciente
             municipio,
             establec_salud,
             num_hc,
-            ci_med,
+            ci_med,    
 
             nombres,
             paterno,
@@ -65,6 +65,7 @@ class ModeloPaciente
             sexo,
             lugar_nac,
             fecha_nac,
+
             ocupa,
             domicilio,
             telf,
@@ -77,32 +78,33 @@ class ModeloPaciente
             estado,
             fecha_crea
             ) VALUES (
-                '$dpto',
-                '$municipio',
-                '$establec_salud',
-                '$num_hc',
-                '$ci_med',
+                '$M_dpto',
+                '$M_municipio',
+                '$M_establec_salud',
+                '$M_num_hc',
+                '$M_ci_med',
 
-                '$nombres',
-                '$paterno',
-                '$materno',
-                '$nom_completo',
-                '$ci',
-                '$edad',
-                '$sexo',
-                '$lugar_nac'
-                '$fecha_nac',
-                '$ocupa',
-                '$domicilio',
-                '$telf',
-                '$instrucción',
-                '$eCivil',
-                '$nacOrig',
-                '$idioma',
-                '$foto_paciente',                
+                '$M_nombres',
+                '$M_paterno',
+                '$M_materno',
+                '$M_nom_completo',
+                '$M_ci',
+                '$M_edad',
+                '$M_sexo', 
+                '$M_lugar_nac',
+                '$M_fecha_nac',
 
-                '$estado',
-                '$fecha_crea'
+                '$M_ocupa',
+                '$M_domicilio',
+                '$M_telf',
+                '$M_instrucción',
+                '$M_eCivil',
+                '$M_nacOrig',
+                '$M_idioma',
+                '$M_foto_paciente',
+
+                '$M_estado',
+                '$M_fecha_crea'
                 
                 )");
 

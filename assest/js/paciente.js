@@ -40,14 +40,30 @@ function RegNuevoPaciente() {
 
 }
 
-/* ***** MODAL VER USUARIO */
-function MVerUsuario(id) {
+/* ***** MODAL PATOLOGIAS */
+function MPatologias(id) {
     $('#modal-lg').modal('show');
     var obj = "";
     $.ajax(
         {
             type: "POST",
-            url: "vista/usuario/FDetalleUsuario.php?idUsuario=" + id,
+            url: "vista/paciente/FPatologia.php?idUsuario=" + id,
+            data: obj,
+            success: function (data) {
+                $("#modal-content-lg").html(data);
+            }
+        }
+    )
+}
+
+/* ***** MODAL EXTRA ORAL */
+function MExtraOral(id) {
+    $('#modal-lg').modal('show');
+    var obj = "";
+    $.ajax(
+        {
+            type: "POST",
+            url: "vista/paciente/FExtraOral.php?idUsuario=" + id,
             data: obj,
             success: function (data) {
                 $("#modal-content-lg").html(data);

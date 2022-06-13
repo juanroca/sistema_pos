@@ -52,17 +52,17 @@
                   <td><img src="assest/img/paciente/<?php echo $paciente['foto_paciente']; ?>" alt="" width="50px"></td>
                 <?php
                 }
-                ?>              
+                ?>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-info" onclick="MVerPaciente(<?php echo $paciente['id_paciente']; ?>)">
-                      <i class="fas fa-eye"></i>
+                    <button class="btn btn-info" onclick="MPatologias(<?php echo $paciente['id_paciente']; ?>)">
+                    <i>Pt</i>
                     </button>
-                    <button class="btn btn-secondary" onclick="MEditPaciente(<?php echo $paciente['id_paciente']; ?>)">
-                      <i class="fas fa-edit"></i>
+                    <button class="btn btn-secondary" onclick="MExtraOral(<?php echo $paciente['id_paciente']; ?>)">
+                      <i>EH</i>
                     </button>
                     <button class="btn btn-danger" onclick="MEliPaciente(<?php echo $paciente['id_paciente']; ?>)">
-                      <i class="fas fa-trash"></i>
+                      <i>IH</i>
                     </button>
 
                   </div>
