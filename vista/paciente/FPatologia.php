@@ -59,7 +59,7 @@ $fechaActual = date('m-d-Y h:i:s');
       </div>
       <div class="row">
         <div class="form-group col-sm-4">
-          <label>Está en tratamiento médico?</label>
+          <label>Actualmente está en algún tratamiento médico?</label>
           <select class="form-control form-control-sm" name="perfil" id="perfil">
             <option value="NO" selected>NO</option>
             <option value="SI">SI</option>

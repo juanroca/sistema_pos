@@ -40,6 +40,22 @@ function RegNuevoPaciente() {
 
 }
 
+/* ***** MODAL VER PACIENTE */
+function MVerPaciente(id) {
+    $('#modal-lg').modal('show');
+    var obj = "";
+    $.ajax(
+        {
+            type: "POST",
+            url: "vista/paciente/FDetallePaciente.php?idPaciente=" + id,
+            data: obj,
+            success: function (data) {
+                $("#modal-content-lg").html(data);
+            }
+        }
+    )
+}
+
 /* ***** MODAL PATOLOGIAS */
 function MPatologias(id) {
     $('#modal-lg').modal('show');

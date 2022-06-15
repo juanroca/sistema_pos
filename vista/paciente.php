@@ -55,14 +55,17 @@
                 ?>
                 <td>
                   <div class="btn-group">
-                    <button class="btn btn-info" onclick="MPatologias(<?php echo $paciente['id_paciente']; ?>)">
-                    <i>Pt</i>
+                    <button title="Ver Paciente" class="btn btn-success" onclick="MVerPaciente(<?php echo $paciente['id_paciente']; ?>)">
+                    <i class="fas fa-eye"></i>
                     </button>
-                    <button class="btn btn-secondary" onclick="MExtraOral(<?php echo $paciente['id_paciente']; ?>)">
+                    <button title="Antecentes Patológicos" class="btn btn-warning" onclick="MPatologias(<?php echo $paciente['id_paciente']; ?>)">
+                    <i>AP</i>
+                    </button>
+                    <button title="Examen Oral" class="btn btn-secondary" onclick="MExtraOral(<?php echo $paciente['id_paciente']; ?>)">
                       <i>EH</i>
                     </button>
-                    <button class="btn btn-danger" onclick="MEliPaciente(<?php echo $paciente['id_paciente']; ?>)">
-                      <i>IH</i>
+                    <button title="Odontograma" class="btn btn-primary" onclick="MOdontograma(<?php echo $paciente['id_paciente']; ?>)">
+                      <i>OG</i>
                     </button>
 
                   </div>
